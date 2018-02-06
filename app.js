@@ -31,68 +31,68 @@ CookieStore.prototype.predictDailyCookies = function() {
 // The header row and footer row are each created in their own stand-alone function
 // Create a buildTable function to add header, each cookie stand's row, and footer row to the table
 
+pdxAirportStore.predictDailyCookies();
+pioneerSquareStore.predictDailyCookies();
+powellsStore.predictDailyCookies();
+stJohnsStore.predictDailyCookies();
+waterfrontStore.predictDailyCookies();
+
+const table = document.querySelector('#cookie-predictions table');
+
 function createHeader() {
     const header = document.createElement('thead');
+    const tr = document.createElement('tr');
+    header.appendChild(tr);
+    const emptyTH = document.createElement('th');
+    tr.appendChild(emptyTH);
     for (let i = 0; i < hours.length; i++) {
         const th = document.createElement('th');
         th.textContent = hours[i];
-        header.appendChild(th);
+        tr.appendChild(th);
     }
-    const table = document.querySelector('#cookie-predictions table');
     table.appendChild(header);
 }
 
 function createFooter() {
     const footer = document.createElement('tfoot');
+    const tr = document.createElement('tr');
+    footer.appendChild(tr);
+    const footerHeading = document.createElement('th');
+    footerHeading.textContent = 'Totals';
+    tr.appendChild(footerHeading);
     for (let i = 0; i < hours.length; i++) {
-        const th = document.createElement('th');
-        th.textContent = 'total cookies';
-        footer.appendChild(th);
+        const td = document.createElement('td');
+        td.textContent = 'total cookies';
+        tr.appendChild(td);
     }
-    const table = document.querySelector('#cookie-predictions table');
     table.appendChild(footer);
+}
+
+function addStoreRow(storeObject) {
+    const tr = document.createElement('tr');
+    const rowHeading = document.createElement('th');
+    rowHeading.textContent = storeObject.locationName;
+    tr.appendChild(rowHeading);
+    const dailyCookiesArray = storeObject.predictDailyCookies()[0];
+    for (let i = 0; i < dailyCookiesArray.length; i++) {
+        const td = document.createElement('td');
+        td.textContent = dailyCookiesArray[i];
+        tr.appendChild(td);
+    }
+    const body = document.querySelector('#cookie-predictions table tbody');
+    body.appendChild(tr);
 }
 
 function buildTable() {
     createHeader();
-
+    const body = document.createElement('tbody');
+    table.appendChild(body);
+    addStoreRow(pdxAirportStore);
+    addStoreRow(pioneerSquareStore);
+    addStoreRow(powellsStore);
+    addStoreRow(stJohnsStore);
+    addStoreRow(waterfrontStore);
     createFooter();
 }
 
 buildTable();
-
-function listSales(storeObject) {
-    const listSection = document.querySelector('#cookie-predictions table');
-    const newHeading = document.createElement('h2');
-    listSection.appendChild(newHeading);
-    newHeading.textContent = storeObject.locationName;
-    const newUL = document.createElement('ul');
-    listSection.appendChild(newUL);
-    // added ID based on info from object, just to see how that might work:
-    // const storeID = storeObject.locationName.replace(/[^A-Za-z]/g, '').toLowerCase();
-    // newUL.setAttribute('id', storeID);
-    const dailyCookiesArray = storeObject.predictDailyCookies()[0];
-    for (let i = 0; i < dailyCookiesArray.length; i++) {
-        const newLI = document.createElement('li');
-        newUL.appendChild(newLI);
-        newLI.textContent = hours[i] + ': ' + dailyCookiesArray[i] + ' cookies';
-    }
-    const newLastLI = document.createElement('li');
-    newUL.appendChild(newLastLI);
-    newLastLI.textContent = 'Total: ' + storeObject.predictDailyCookies()[1] + ' cookies';
-}
-
-pdxAirportStore.predictDailyCookies();
-listSales(pdxAirportStore);
-
-pioneerSquareStore.predictDailyCookies();
-listSales(pioneerSquareStore);
-
-powellsStore.predictDailyCookies();
-listSales(powellsStore);
-
-stJohnsStore.predictDailyCookies();
-listSales(stJohnsStore);
-
-waterfrontStore.predictDailyCookies();
-listSales(waterfrontStore);
