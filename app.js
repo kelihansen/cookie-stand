@@ -10,6 +10,11 @@ function CookieStore (locationName, minCustPerHour, maxCustPerHour, avgCookiesPe
 }
 
 const pdxAirportStore = new CookieStore('PDX Airport', 23, 65, 6.3);
+const pioneerSquareStore = new CookieStore('Pioneer Square', 3, 24, 1.2);
+const powellsStore = new CookieStore('Powell\'s', 11, 38, 3.7);
+const stJohnsStore = new CookieStore('St. John\'s', 20, 38, 2.3);
+const waterfrontStore = new CookieStore('Waterfront', 2, 16, 4.6);
+
 
 CookieStore.prototype.predictDailyCookies = function() {
     const dailyCookiesArray = [];
@@ -23,95 +28,7 @@ CookieStore.prototype.predictDailyCookies = function() {
     return [dailyCookiesArray, totalCookies];
 };
 
-const pioneerSquareStore = {
-    locationName: 'Pioneer Square',
-    minCustPerHour: 3,
-    maxCustPerHour: 24,
-    avgCookiesPerSale: 1.2,
-    predictCustPerHour: function() {
-        return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
-    },
-    predictCookiesPerHour: function() {
-        return Math.round(this.predictCustPerHour() * this.avgCookiesPerSale);
-    },
-    predictDailyCookies: function() {
-        const dailyCookiesArray = [];
-        let totalCookies = 0;
-        for (let i = 0; i < hours.length; i++) {
-            dailyCookiesArray.push(this.predictCookiesPerHour());
-            totalCookies += dailyCookiesArray[i];
-        }
-        return [dailyCookiesArray, totalCookies];
-    }
-};
-
-const powellsStore = {
-    locationName: 'Powell\'s',
-    minCustPerHour: 11,
-    maxCustPerHour: 38,
-    avgCookiesPerSale: 3.7,
-    predictCustPerHour: function() {
-        return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
-    },
-    predictCookiesPerHour: function() {
-        return Math.round(this.predictCustPerHour() * this.avgCookiesPerSale);
-    },
-    predictDailyCookies: function() {
-        const dailyCookiesArray = [];
-        let totalCookies = 0;
-        for (let i = 0; i < hours.length; i++) {
-            dailyCookiesArray.push(this.predictCookiesPerHour());
-            totalCookies += dailyCookiesArray[i];
-        }
-        return [dailyCookiesArray, totalCookies];
-    }
-};
-
-const stJohnsStore = {
-    locationName: 'St. John\'s',
-    minCustPerHour: 20,
-    maxCustPerHour: 38,
-    avgCookiesPerSale: 2.3,
-    predictCustPerHour: function() {
-        return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
-    },
-    predictCookiesPerHour: function() {
-        return Math.round(this.predictCustPerHour() * this.avgCookiesPerSale);
-    },
-    predictDailyCookies: function() {
-        const dailyCookiesArray = [];
-        let totalCookies = 0;
-        for (let i = 0; i < hours.length; i++) {
-            dailyCookiesArray.push(this.predictCookiesPerHour());
-            totalCookies += dailyCookiesArray[i];
-        }
-        return [dailyCookiesArray, totalCookies];
-    }
-};
-
-const waterfrontStore = {
-    locationName: 'Waterfront',
-    minCustPerHour: 2,
-    maxCustPerHour: 16,
-    avgCookiesPerSale: 4.6,
-    predictCustPerHour: function() {
-        return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
-    },
-    predictCookiesPerHour: function() {
-        return Math.round(this.predictCustPerHour() * this.avgCookiesPerSale);
-    },
-    predictDailyCookies: function() {
-        const dailyCookiesArray = [];
-        let totalCookies = 0;
-        for (let i = 0; i < hours.length; i++) {
-            dailyCookiesArray.push(this.predictCookiesPerHour());
-            totalCookies += dailyCookiesArray[i];
-        }
-        return [dailyCookiesArray, totalCookies];
-    }
-};
-
-function listCookieSales(storeObject) {
+function listSales(storeObject) {
     const listSection = document.getElementById('store-lists');
     const newHeading = document.createElement('h2');
     listSection.appendChild(newHeading);
@@ -133,8 +50,16 @@ function listCookieSales(storeObject) {
 }
 
 pdxAirportStore.predictDailyCookies();
-listCookieSales(pdxAirportStore);
-listCookieSales(pioneerSquareStore);
-listCookieSales(powellsStore);
-listCookieSales(stJohnsStore);
-listCookieSales(waterfrontStore);
+listSales(pdxAirportStore);
+
+pioneerSquareStore.predictDailyCookies();
+listSales(pioneerSquareStore);
+
+powellsStore.predictDailyCookies();
+listSales(powellsStore);
+
+stJohnsStore.predictDailyCookies();
+listSales(stJohnsStore);
+
+waterfrontStore.predictDailyCookies();
+listSales(waterfrontStore);
