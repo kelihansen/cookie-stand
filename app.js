@@ -8,22 +8,23 @@ function add(a,b) {
 
 function listCookieSales(storeObject) {
     const listSection = document.getElementById('store-lists');
-    const headingEl = document.createElement('h2');
-    listSection.appendChild(headingEl);
-    headingEl.textContent = storeObject.locationName;
-    const ulEl = document.createElement('ul');
-    listSection.appendChild(ulEl);
+    const newHeading = document.createElement('h2');
+    listSection.appendChild(newHeading);
+    newHeading.textContent = storeObject.locationName;
+    const newUL = document.createElement('ul');
+    listSection.appendChild(newUL);
     // added ID based on info from object, just to see how that might work:
     // const storeID = storeObject.locationName.replace(/[^A-Za-z]/g, '').toLowerCase();
-    // ulEl.setAttribute('id', storeID);
-    for (let i = 0; i < storeObject.dailyCookiesPrediction()[0].length; i++) {
-        const liEl = document.createElement('li');
-        ulEl.appendChild(liEl);
-        liEl.textContent = hours[i] + ': ' + storeObject.dailyCookiesPrediction()[0][i] + ' cookies';
+    // newUL.setAttribute('id', storeID);
+    const hourlyCookiePredictions = storeObject.dailyCookiesPrediction()[0];
+    for (let i = 0; i < hourlyCookiePredictions.length; i++) {
+        const newLI = document.createElement('li');
+        newUL.appendChild(newLI);
+        newLI.textContent = hours[i] + ': ' + hourlyCookiePredictions[i] + ' cookies';
     }
-    const liElTotal = document.createElement('li');
-    ulEl.appendChild(liElTotal);
-    liElTotal.textContent = 'Total: ' + storeObject.dailyCookiesPrediction()[1] + ' cookies';
+    const newLastLI = document.createElement('li');
+    newUL.appendChild(newLastLI);
+    newLastLI.textContent = 'Total: ' + storeObject.dailyCookiesPrediction()[1] + ' cookies';
 }
 
 const pdxAirportStore = {
@@ -40,7 +41,7 @@ const pdxAirportStore = {
     dailyCookiesPrediction: function() {
         const dailyCookiesArray = [];
         let totalCookies = 0;
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < hours.length; i++) {
             dailyCookiesArray.push(this.predictCookiesPerHour());
             totalCookies = add(totalCookies, dailyCookiesArray[i]);
         }
@@ -63,7 +64,7 @@ const pioneerSquareStore = {
     dailyCookiesPrediction: function() {
         const dailyCookiesArray = [];
         let totalCookies = 0;
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < hours.length; i++) {
             dailyCookiesArray.push(this.predictCookiesPerHour());
             totalCookies = add(totalCookies, dailyCookiesArray[i]);
         }
@@ -72,7 +73,7 @@ const pioneerSquareStore = {
 };
 
 const powellsStore = {
-    locationName: "Powell's",
+    locationName: 'Powell\'s',
     minCustPerHour: 11,
     maxCustPerHour: 38,
     predictCustPerHour: function() {
@@ -85,7 +86,7 @@ const powellsStore = {
     dailyCookiesPrediction: function() {
         const dailyCookiesArray = [];
         let totalCookies = 0;
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < hours.length; i++) {
             dailyCookiesArray.push(this.predictCookiesPerHour());
             totalCookies = add(totalCookies, dailyCookiesArray[i]);
         }
@@ -94,7 +95,7 @@ const powellsStore = {
 };
 
 const stJohnsStore = {
-    locationName: "St. John's",
+    locationName: 'St. John\'s',
     minCustPerHour: 20,
     maxCustPerHour: 38,
     predictCustPerHour: function() {
@@ -107,7 +108,7 @@ const stJohnsStore = {
     dailyCookiesPrediction: function() {
         const dailyCookiesArray = [];
         let totalCookies = 0;
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < hours.length; i++) {
             dailyCookiesArray.push(this.predictCookiesPerHour());
             totalCookies = add(totalCookies, dailyCookiesArray[i]);
         }
@@ -129,7 +130,7 @@ const waterfrontStore = {
     dailyCookiesPrediction: function() {
         const dailyCookiesArray = [];
         let totalCookies = 0;
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < hours.length; i++) {
             dailyCookiesArray.push(this.predictCookiesPerHour());
             totalCookies = add(totalCookies, dailyCookiesArray[i]);
         }
