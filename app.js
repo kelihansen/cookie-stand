@@ -2,10 +2,6 @@
 
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
-function add(a,b) {
-    return a + b;
-}
-
 function listCookieSales(storeObject) {
     const listSection = document.getElementById('store-lists');
     const newHeading = document.createElement('h2');
@@ -43,7 +39,7 @@ const pdxAirportStore = {
         let totalCookies = 0;
         for (let i = 0; i < hours.length; i++) {
             dailyCookiesArray.push(this.predictCookiesPerHour());
-            totalCookies = add(totalCookies, dailyCookiesArray[i]);
+            totalCookies += dailyCookiesArray[i];
         }
         return [dailyCookiesArray, totalCookies];
     }
@@ -66,7 +62,7 @@ const pioneerSquareStore = {
         let totalCookies = 0;
         for (let i = 0; i < hours.length; i++) {
             dailyCookiesArray.push(this.predictCookiesPerHour());
-            totalCookies = add(totalCookies, dailyCookiesArray[i]);
+            totalCookies += dailyCookiesArray[i];
         }
         return [dailyCookiesArray, totalCookies];
     }
@@ -88,7 +84,7 @@ const powellsStore = {
         let totalCookies = 0;
         for (let i = 0; i < hours.length; i++) {
             dailyCookiesArray.push(this.predictCookiesPerHour());
-            totalCookies = add(totalCookies, dailyCookiesArray[i]);
+            totalCookies += dailyCookiesArray[i];
         }
         return [dailyCookiesArray, totalCookies];
     }
@@ -110,7 +106,7 @@ const stJohnsStore = {
         let totalCookies = 0;
         for (let i = 0; i < hours.length; i++) {
             dailyCookiesArray.push(this.predictCookiesPerHour());
-            totalCookies = add(totalCookies, dailyCookiesArray[i]);
+            totalCookies += dailyCookiesArray[i];
         }
         return [dailyCookiesArray, totalCookies];
     }
@@ -132,7 +128,7 @@ const waterfrontStore = {
         let totalCookies = 0;
         for (let i = 0; i < hours.length; i++) {
             dailyCookiesArray.push(this.predictCookiesPerHour());
-            totalCookies = add(totalCookies, dailyCookiesArray[i]);
+            totalCookies += dailyCookiesArray[i];
         }
         return [dailyCookiesArray, totalCookies];
     }
