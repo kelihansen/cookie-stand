@@ -10,13 +10,13 @@ function listCookieSales(storeObject) {
     const newUL = document.createElement('ul');
     listSection.appendChild(newUL);
     // added ID based on info from object, just to see how that might work:
-    const storeID = storeObject.locationName.replace(/[^A-Za-z]/g, '').toLowerCase();
-    newUL.setAttribute('id', storeID);
-    const hourlyCookiePredictions = storeObject.predictDailyCookies()[0];
-    for (let i = 0; i < hourlyCookiePredictions.length; i++) {
+    // const storeID = storeObject.locationName.replace(/[^A-Za-z]/g, '').toLowerCase();
+    // newUL.setAttribute('id', storeID);
+    const dailyCookiesArray = storeObject.predictDailyCookies()[0];
+    for (let i = 0; i < dailyCookiesArray.length; i++) {
         const newLI = document.createElement('li');
         newUL.appendChild(newLI);
-        newLI.textContent = hours[i] + ': ' + hourlyCookiePredictions[i] + ' cookies';
+        newLI.textContent = hours[i] + ': ' + dailyCookiesArray[i] + ' cookies';
     }
     const newLastLI = document.createElement('li');
     newUL.appendChild(newLastLI);
@@ -28,17 +28,13 @@ const pdxAirportStore = {
     minCustPerHour: 23,
     maxCustPerHour: 65,
     avgCookiesPerSale: 6.3,
-    predictCustPerHour: function() {
-        return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
-    },
-    predictCookiesPerHour: function() {
-        return Math.round(this.predictCustPerHour() * this.avgCookiesPerSale);
-    },
     predictDailyCookies: function() {
         const dailyCookiesArray = [];
         let totalCookies = 0;
         for (let i = 0; i < hours.length; i++) {
-            dailyCookiesArray.push(this.predictCookiesPerHour());
+            const custPerHourPrediction = Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
+            const cookiesPerHourPrediction = Math.round(custPerHourPrediction * this.avgCookiesPerSale);
+            dailyCookiesArray.push(cookiesPerHourPrediction);
             totalCookies += dailyCookiesArray[i];
         }
         return [dailyCookiesArray, totalCookies];
