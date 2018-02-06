@@ -10,9 +10,9 @@ function listCookieSales(storeObject) {
     const newUL = document.createElement('ul');
     listSection.appendChild(newUL);
     // added ID based on info from object, just to see how that might work:
-    // const storeID = storeObject.locationName.replace(/[^A-Za-z]/g, '').toLowerCase();
-    // newUL.setAttribute('id', storeID);
-    const hourlyCookiePredictions = storeObject.dailyCookiesPrediction()[0];
+    const storeID = storeObject.locationName.replace(/[^A-Za-z]/g, '').toLowerCase();
+    newUL.setAttribute('id', storeID);
+    const hourlyCookiePredictions = storeObject.predictDailyCookies()[0];
     for (let i = 0; i < hourlyCookiePredictions.length; i++) {
         const newLI = document.createElement('li');
         newUL.appendChild(newLI);
@@ -20,21 +20,21 @@ function listCookieSales(storeObject) {
     }
     const newLastLI = document.createElement('li');
     newUL.appendChild(newLastLI);
-    newLastLI.textContent = 'Total: ' + storeObject.dailyCookiesPrediction()[1] + ' cookies';
+    newLastLI.textContent = 'Total: ' + storeObject.predictDailyCookies()[1] + ' cookies';
 }
 
 const pdxAirportStore = {
     locationName: 'PDX Airport',
     minCustPerHour: 23,
     maxCustPerHour: 65,
+    avgCookiesPerSale: 6.3,
     predictCustPerHour: function() {
         return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
     },
-    avgCookiesPerSale: 6.3,
     predictCookiesPerHour: function() {
         return Math.round(this.predictCustPerHour() * this.avgCookiesPerSale);
     },
-    dailyCookiesPrediction: function() {
+    predictDailyCookies: function() {
         const dailyCookiesArray = [];
         let totalCookies = 0;
         for (let i = 0; i < hours.length; i++) {
@@ -43,21 +43,20 @@ const pdxAirportStore = {
         }
         return [dailyCookiesArray, totalCookies];
     }
-
 };
 
 const pioneerSquareStore = {
     locationName: 'Pioneer Square',
     minCustPerHour: 3,
     maxCustPerHour: 24,
+    avgCookiesPerSale: 1.2,
     predictCustPerHour: function() {
         return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
     },
-    avgCookiesPerSale: 1.2,
     predictCookiesPerHour: function() {
         return Math.round(this.predictCustPerHour() * this.avgCookiesPerSale);
     },
-    dailyCookiesPrediction: function() {
+    predictDailyCookies: function() {
         const dailyCookiesArray = [];
         let totalCookies = 0;
         for (let i = 0; i < hours.length; i++) {
@@ -72,14 +71,14 @@ const powellsStore = {
     locationName: 'Powell\'s',
     minCustPerHour: 11,
     maxCustPerHour: 38,
+    avgCookiesPerSale: 3.7,
     predictCustPerHour: function() {
         return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
     },
-    avgCookiesPerSale: 3.7,
     predictCookiesPerHour: function() {
         return Math.round(this.predictCustPerHour() * this.avgCookiesPerSale);
     },
-    dailyCookiesPrediction: function() {
+    predictDailyCookies: function() {
         const dailyCookiesArray = [];
         let totalCookies = 0;
         for (let i = 0; i < hours.length; i++) {
@@ -94,14 +93,14 @@ const stJohnsStore = {
     locationName: 'St. John\'s',
     minCustPerHour: 20,
     maxCustPerHour: 38,
+    avgCookiesPerSale: 2.3,
     predictCustPerHour: function() {
         return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
     },
-    avgCookiesPerSale: 2.3,
     predictCookiesPerHour: function() {
         return Math.round(this.predictCustPerHour() * this.avgCookiesPerSale);
     },
-    dailyCookiesPrediction: function() {
+    predictDailyCookies: function() {
         const dailyCookiesArray = [];
         let totalCookies = 0;
         for (let i = 0; i < hours.length; i++) {
@@ -116,14 +115,14 @@ const waterfrontStore = {
     locationName: 'Waterfront',
     minCustPerHour: 2,
     maxCustPerHour: 16,
+    avgCookiesPerSale: 4.6,
     predictCustPerHour: function() {
         return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
     },
-    avgCookiesPerSale: 4.6,
     predictCookiesPerHour: function() {
         return Math.round(this.predictCustPerHour() * this.avgCookiesPerSale);
     },
-    dailyCookiesPrediction: function() {
+    predictDailyCookies: function() {
         const dailyCookiesArray = [];
         let totalCookies = 0;
         for (let i = 0; i < hours.length; i++) {
