@@ -29,7 +29,7 @@ CookieStore.prototype.predictDailyCookies = function() {
 };
 
 function listSales(storeObject) {
-    const listSection = document.getElementById('store-lists');
+    const listSection = document.getElementById('cookie-predictions');
     const newHeading = document.createElement('h2');
     listSection.appendChild(newHeading);
     newHeading.textContent = storeObject.locationName;
