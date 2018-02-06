@@ -42,44 +42,57 @@ function createHeader() {
     table.appendChild(header);
 }
 
-createHeader();
+function createFooter() {
+    const footer = document.createElement('tfoot');
+    for (let i = 0; i < hours.length; i++) {
+        const th = document.createElement('th');
+        th.textContent = 'total cookies';
+        footer.appendChild(th);
+    }
+    const table = document.querySelector('#cookie-predictions table');
+    table.appendChild(footer);
+}
 
-// function buildTable() {
-//     const table = document.querySelector('#cookie-predictions table');
-// }
+function buildTable() {
+    createHeader();
 
-// function listSales(storeObject) {
-//     const listSection = document.querySelector('#cookie-predictions table');
-//     const newHeading = document.createElement('h2');
-//     listSection.appendChild(newHeading);
-//     newHeading.textContent = storeObject.locationName;
-//     const newUL = document.createElement('ul');
-//     listSection.appendChild(newUL);
-//     // added ID based on info from object, just to see how that might work:
-//     // const storeID = storeObject.locationName.replace(/[^A-Za-z]/g, '').toLowerCase();
-//     // newUL.setAttribute('id', storeID);
-//     const dailyCookiesArray = storeObject.predictDailyCookies()[0];
-//     for (let i = 0; i < dailyCookiesArray.length; i++) {
-//         const newLI = document.createElement('li');
-//         newUL.appendChild(newLI);
-//         newLI.textContent = hours[i] + ': ' + dailyCookiesArray[i] + ' cookies';
-//     }
-//     const newLastLI = document.createElement('li');
-//     newUL.appendChild(newLastLI);
-//     newLastLI.textContent = 'Total: ' + storeObject.predictDailyCookies()[1] + ' cookies';
-// }
+    createFooter();
+}
 
-// pdxAirportStore.predictDailyCookies();
-// listSales(pdxAirportStore);
+buildTable();
 
-// pioneerSquareStore.predictDailyCookies();
-// listSales(pioneerSquareStore);
+function listSales(storeObject) {
+    const listSection = document.querySelector('#cookie-predictions table');
+    const newHeading = document.createElement('h2');
+    listSection.appendChild(newHeading);
+    newHeading.textContent = storeObject.locationName;
+    const newUL = document.createElement('ul');
+    listSection.appendChild(newUL);
+    // added ID based on info from object, just to see how that might work:
+    // const storeID = storeObject.locationName.replace(/[^A-Za-z]/g, '').toLowerCase();
+    // newUL.setAttribute('id', storeID);
+    const dailyCookiesArray = storeObject.predictDailyCookies()[0];
+    for (let i = 0; i < dailyCookiesArray.length; i++) {
+        const newLI = document.createElement('li');
+        newUL.appendChild(newLI);
+        newLI.textContent = hours[i] + ': ' + dailyCookiesArray[i] + ' cookies';
+    }
+    const newLastLI = document.createElement('li');
+    newUL.appendChild(newLastLI);
+    newLastLI.textContent = 'Total: ' + storeObject.predictDailyCookies()[1] + ' cookies';
+}
 
-// powellsStore.predictDailyCookies();
-// listSales(powellsStore);
+pdxAirportStore.predictDailyCookies();
+listSales(pdxAirportStore);
 
-// stJohnsStore.predictDailyCookies();
-// listSales(stJohnsStore);
+pioneerSquareStore.predictDailyCookies();
+listSales(pioneerSquareStore);
 
-// waterfrontStore.predictDailyCookies();
-// listSales(waterfrontStore);
+powellsStore.predictDailyCookies();
+listSales(powellsStore);
+
+stJohnsStore.predictDailyCookies();
+listSales(stJohnsStore);
+
+waterfrontStore.predictDailyCookies();
+listSales(waterfrontStore);
