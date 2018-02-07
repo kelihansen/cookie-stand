@@ -33,7 +33,7 @@ CookieStore.prototype.predictDailyCookies = function() {
     return [dailyCookiesArray, storeTotalCookies];
 };
 
-const table = document.querySelector('#cookie-predictions table');
+const table = document.querySelector('#data table');
 
 function createHeader() {
     const header = document.createElement('thead');
@@ -44,10 +44,12 @@ function createHeader() {
     for (let i = 0; i < hours.length; i++) {
         const th = document.createElement('th');
         th.textContent = hours[i];
+        th.setAttribute('scope', 'column');
         tr.appendChild(th);
     }
     const storeTotalHeading = document.createElement('th');
-    storeTotalHeading.textContent = 'Store Total';
+    storeTotalHeading.textContent = 'Totals';
+    storeTotalHeading.setAttribute('scope', 'column');
     tr.appendChild(storeTotalHeading);
     table.appendChild(header);
 }
@@ -56,6 +58,7 @@ function addStoreRow(storeObject) {
     const tr = document.createElement('tr');
     const rowHeading = document.createElement('th');
     rowHeading.textContent = storeObject.locationName;
+    rowHeading.setAttribute('scope', 'row');
     tr.appendChild(rowHeading);
     const dailyCookiePredictions = storeObject.predictDailyCookies();
     for (let i = 0; i < hours.length; i++) {
@@ -67,7 +70,7 @@ function addStoreRow(storeObject) {
     storeTotal.textContent = dailyCookiePredictions[1];
     tr.appendChild(storeTotal);
     grandTotal += dailyCookiePredictions[1];
-    const body = document.querySelector('#cookie-predictions table tbody');
+    const body = document.querySelector('#data table tbody');
     body.appendChild(tr);
 }
 
@@ -76,15 +79,17 @@ function createFooter() {
     const tr = document.createElement('tr');
     footer.appendChild(tr);
     const footerHeading = document.createElement('th');
-    footerHeading.textContent = 'Hourly Total';
+    footerHeading.setAttribute('scope', 'row');
+    footerHeading.textContent = 'Totals';
     tr.appendChild(footerHeading);
     for (let i = 0; i < hours.length; i++) {
         const td = document.createElement('td');
         td.textContent = hourlyTotal[i];
         tr.appendChild(td);
     }
-    const sumCorner = document.createElement('th');
-    sumCorner.textContent = `${grandTotal} cookies`;
+    const sumCorner = document.createElement('td');
+    sumCorner.textContent = grandTotal;
+    sumCorner.setAttribute('id', 'grand-total')
     tr.appendChild(sumCorner);
     table.appendChild(footer);
 }
