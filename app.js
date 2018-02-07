@@ -20,18 +20,18 @@ const powellsStore = new CookieStore('Powell\'s', 11, 38, 3.7);
 const stJohnsStore = new CookieStore('St. John\'s', 20, 38, 2.3);
 const waterfrontStore = new CookieStore('Waterfront', 2, 16, 4.6);
 
-CookieStore.prototype.predictDailyCookies = function() {
-    const dailyCookiesArray = [];
-    let storeTotalCookies = 0;
+CookieStore.prototype.predictCookies = function() {
+    const hourlyPredictedCookies = [];
+    let totalPredictedCookies = 0;
     for (let i = 0; i < hours.length; i++) {
         const custPerHourPrediction = Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
         const cookiesPerHourPrediction = Math.round(custPerHourPrediction * this.avgCookiesPerSale);
-        dailyCookiesArray.push(cookiesPerHourPrediction);
-        storeTotalCookies += cookiesPerHourPrediction;
+        hourlyPredictedCookies.push(cookiesPerHourPrediction);
+        totalPredictedCookies += cookiesPerHourPrediction;
         hourlyTotal[i] += cookiesPerHourPrediction;
     }
-    this.dailyCookiesArray = dailyCookiesArray;
-    this.storeTotalCookies = storeTotalCookies;
+    this.hourlyPredictedCookies = hourlyPredictedCookies;
+    this.totalPredictedCookies = totalPredictedCookies;
 };
 
 const table = document.querySelector('#data table');
@@ -61,16 +61,16 @@ function addStoreRow(storeObject) {
     rowHeading.textContent = storeObject.locationName;
     rowHeading.setAttribute('scope', 'row');
     tr.appendChild(rowHeading);
-    storeObject.predictDailyCookies();
+    storeObject.predictCookies();
     for (let i = 0; i < hours.length; i++) {
         const td = document.createElement('td');
-        td.textContent = storeObject.dailyCookiesArray[i];
+        td.textContent = storeObject.hourlyPredictedCookies[i];
         tr.appendChild(td);
     }
     const storeTotal = document.createElement('td');
-    storeTotal.textContent = storeObject.storeTotalCookies;
+    storeTotal.textContent = storeObject.totalPredictedCookies;
     tr.appendChild(storeTotal);
-    grandTotal += storeObject.storeTotalCookies;
+    grandTotal += storeObject.totalPredictedCookies;
     const body = document.querySelector('#data table tbody');
     body.appendChild(tr);
 }
