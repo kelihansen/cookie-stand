@@ -30,7 +30,8 @@ CookieStore.prototype.predictDailyCookies = function() {
         storeTotalCookies += cookiesPerHourPrediction;
         hourlyTotal[i] += cookiesPerHourPrediction;
     }
-    return [dailyCookiesArray, storeTotalCookies];
+    this.dailyCookiesArray = dailyCookiesArray;
+    this.storeTotalCookies = storeTotalCookies;
 };
 
 const table = document.querySelector('#data table');
@@ -60,16 +61,16 @@ function addStoreRow(storeObject) {
     rowHeading.textContent = storeObject.locationName;
     rowHeading.setAttribute('scope', 'row');
     tr.appendChild(rowHeading);
-    const dailyCookiePredictions = storeObject.predictDailyCookies();
+    storeObject.predictDailyCookies();
     for (let i = 0; i < hours.length; i++) {
         const td = document.createElement('td');
-        td.textContent = dailyCookiePredictions[0][i];
+        td.textContent = storeObject.dailyCookiesArray[i];
         tr.appendChild(td);
     }
     const storeTotal = document.createElement('td');
-    storeTotal.textContent = dailyCookiePredictions[1];
+    storeTotal.textContent = storeObject.storeTotalCookies;
     tr.appendChild(storeTotal);
-    grandTotal += dailyCookiePredictions[1];
+    grandTotal += storeObject.storeTotalCookies;
     const body = document.querySelector('#data table tbody');
     body.appendChild(tr);
 }
@@ -89,7 +90,7 @@ function createFooter() {
     }
     const sumCorner = document.createElement('td');
     sumCorner.textContent = grandTotal;
-    sumCorner.setAttribute('id', 'grand-total')
+    sumCorner.setAttribute('id', 'grand-total');
     tr.appendChild(sumCorner);
     table.appendChild(footer);
 }
