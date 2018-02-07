@@ -4,13 +4,49 @@
 }
 
 h2 {
-    margin: 10px;
+    margin-bottom: 10px;
 }
 
-ul {
-    list-style: circle;
-    line-height: 1.5em;
-    padding-left: 17px;
-    margin-left: 10px;
-    margin-bottom: 30px;
+#cookie-needs {
+    margin-top: 50px;
+}
+
+#data {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    background-color: rgb(199, 104, 66);
+    padding: 40px;
+    border-spacing: 4px;
+}
+
+td {
+    background-color: white;
+    border: none;
+    padding: 7px;
+    text-align: center;
+}
+
+tr:nth-child(even) td {
+    background-color: rgb(221, 221, 224);
+}
+
+th[scope="row"] {
+    text-align: right;
+    padding: 7px;
+    background-color: transparent;
+}
+
+th[scope="column"] {
+    padding: 2px 7px;
+}
+
+#data td:last-child, tfoot td {
+    background-color: rgb(233, 187, 135);
+}
+
+#grand-total {
+    font-weight: bold;
 }
