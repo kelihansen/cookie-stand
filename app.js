@@ -5,6 +5,7 @@ const hourlyTotal = [];
 for (let i = 0; i < hours.length; i++) {
     hourlyTotal.push(0);
 }
+let grandTotal = 0;
 
 function CookieStore (locationName, minCustPerHour, maxCustPerHour, avgCookiesPerSale) {
     this.locationName = locationName;
@@ -19,25 +20,18 @@ const powellsStore = new CookieStore('Powell\'s', 11, 38, 3.7);
 const stJohnsStore = new CookieStore('St. John\'s', 20, 38, 2.3);
 const waterfrontStore = new CookieStore('Waterfront', 2, 16, 4.6);
 
-
 CookieStore.prototype.predictDailyCookies = function() {
     const dailyCookiesArray = [];
-    let totalCookies = 0;
+    let storeTotalCookies = 0;
     for (let i = 0; i < hours.length; i++) {
         const custPerHourPrediction = Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
         const cookiesPerHourPrediction = Math.round(custPerHourPrediction * this.avgCookiesPerSale);
         dailyCookiesArray.push(cookiesPerHourPrediction);
-        totalCookies += cookiesPerHourPrediction;
+        storeTotalCookies += cookiesPerHourPrediction;
         hourlyTotal[i] += cookiesPerHourPrediction;
     }
-    return [dailyCookiesArray, totalCookies];
+    return [dailyCookiesArray, storeTotalCookies];
 };
-
-// pdxAirportStore.predictDailyCookies();
-// pioneerSquareStore.predictDailyCookies();
-// powellsStore.predictDailyCookies();
-// stJohnsStore.predictDailyCookies();
-// waterfrontStore.predictDailyCookies();
 
 const table = document.querySelector('#cookie-predictions table');
 
@@ -72,6 +66,7 @@ function addStoreRow(storeObject) {
     const storeTotal = document.createElement('td');
     storeTotal.textContent = dailyCookiePredictions[1];
     tr.appendChild(storeTotal);
+    grandTotal += dailyCookiePredictions[1];
     const body = document.querySelector('#cookie-predictions table tbody');
     body.appendChild(tr);
 }
@@ -88,8 +83,9 @@ function createFooter() {
         td.textContent = hourlyTotal[i];
         tr.appendChild(td);
     }
-    const emptyCorner = document.createElement('th');
-    tr.appendChild(emptyCorner);
+    const sumCorner = document.createElement('th');
+    sumCorner.textContent = `${grandTotal} cookies`;
+    tr.appendChild(sumCorner);
     table.appendChild(footer);
 }
 
