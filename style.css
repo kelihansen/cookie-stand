@@ -3,14 +3,6 @@
     margin: 0;
 }
 
-h2 {
-    margin: 10px;
-}
-
-ul {
-    list-style: circle;
-    line-height: 1.5em;
-    padding-left: 17px;
-    margin-left: 10px;
-    margin-bottom: 30px;
+td {
+    border: 1px solid rgb(216, 216, 216);
 }

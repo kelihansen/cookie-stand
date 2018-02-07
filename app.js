@@ -1,6 +1,10 @@
 'use strict';
 
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+const hourlyTotal = [];
+for (let i = 0; i < hours.length; i++) {
+    hourlyTotal.push(0);
+}
 
 function CookieStore (locationName, minCustPerHour, maxCustPerHour, avgCookiesPerSale) {
     this.locationName = locationName;
@@ -23,19 +27,17 @@ CookieStore.prototype.predictDailyCookies = function() {
         const custPerHourPrediction = Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
         const cookiesPerHourPrediction = Math.round(custPerHourPrediction * this.avgCookiesPerSale);
         dailyCookiesArray.push(cookiesPerHourPrediction);
-        totalCookies += dailyCookiesArray[i];
+        totalCookies += cookiesPerHourPrediction;
+        hourlyTotal[i] += cookiesPerHourPrediction;
     }
     return [dailyCookiesArray, totalCookies];
 };
 
-// The header row and footer row are each created in their own stand-alone function
-// Create a buildTable function to add header, each cookie stand's row, and footer row to the table
-
-pdxAirportStore.predictDailyCookies();
-pioneerSquareStore.predictDailyCookies();
-powellsStore.predictDailyCookies();
-stJohnsStore.predictDailyCookies();
-waterfrontStore.predictDailyCookies();
+// pdxAirportStore.predictDailyCookies();
+// pioneerSquareStore.predictDailyCookies();
+// powellsStore.predictDailyCookies();
+// stJohnsStore.predictDailyCookies();
+// waterfrontStore.predictDailyCookies();
 
 const table = document.querySelector('#cookie-predictions table');
 
@@ -43,29 +45,17 @@ function createHeader() {
     const header = document.createElement('thead');
     const tr = document.createElement('tr');
     header.appendChild(tr);
-    const emptyTH = document.createElement('th');
-    tr.appendChild(emptyTH);
+    const emptyCorner = document.createElement('th');
+    tr.appendChild(emptyCorner);
     for (let i = 0; i < hours.length; i++) {
         const th = document.createElement('th');
         th.textContent = hours[i];
         tr.appendChild(th);
     }
+    const storeTotalHeading = document.createElement('th');
+    storeTotalHeading.textContent = 'Store Total';
+    tr.appendChild(storeTotalHeading);
     table.appendChild(header);
-}
-
-function createFooter() {
-    const footer = document.createElement('tfoot');
-    const tr = document.createElement('tr');
-    footer.appendChild(tr);
-    const footerHeading = document.createElement('th');
-    footerHeading.textContent = 'Totals';
-    tr.appendChild(footerHeading);
-    for (let i = 0; i < hours.length; i++) {
-        const td = document.createElement('td');
-        td.textContent = 'total cookies';
-        tr.appendChild(td);
-    }
-    table.appendChild(footer);
 }
 
 function addStoreRow(storeObject) {
@@ -73,14 +63,34 @@ function addStoreRow(storeObject) {
     const rowHeading = document.createElement('th');
     rowHeading.textContent = storeObject.locationName;
     tr.appendChild(rowHeading);
-    const dailyCookiesArray = storeObject.predictDailyCookies()[0];
-    for (let i = 0; i < dailyCookiesArray.length; i++) {
+    const dailyCookiePredictions = storeObject.predictDailyCookies();
+    for (let i = 0; i < hours.length; i++) {
         const td = document.createElement('td');
-        td.textContent = dailyCookiesArray[i];
+        td.textContent = dailyCookiePredictions[0][i];
         tr.appendChild(td);
     }
+    const storeTotal = document.createElement('td');
+    storeTotal.textContent = dailyCookiePredictions[1];
+    tr.appendChild(storeTotal);
     const body = document.querySelector('#cookie-predictions table tbody');
     body.appendChild(tr);
+}
+
+function createFooter() {
+    const footer = document.createElement('tfoot');
+    const tr = document.createElement('tr');
+    footer.appendChild(tr);
+    const footerHeading = document.createElement('th');
+    footerHeading.textContent = 'Hourly Total';
+    tr.appendChild(footerHeading);
+    for (let i = 0; i < hours.length; i++) {
+        const td = document.createElement('td');
+        td.textContent = hourlyTotal[i];
+        tr.appendChild(td);
+    }
+    const emptyCorner = document.createElement('th');
+    tr.appendChild(emptyCorner);
+    table.appendChild(footer);
 }
 
 function buildTable() {
