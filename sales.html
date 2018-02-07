@@ -10,6 +10,25 @@
             <h2>Estimated Cookie Needs</h2>
             <table>
             </table>
+            <form>
+                <fieldset>
+                    <legend>Add a Store</legend>
+                    
+                    <label for="location-name">Location name</label>
+                    <input type="text" name="location-name" id="location-name" placeholder="New Store" required>
+                    
+                    <label for="min-cust-per-hour">Minimum number of customers</label>
+                    <input type="number" name="min-cust-per-hour" id="min-cust-per-hour" min="0" value="0" required>
+
+                    <label for="max-cust-per-hour">Maximum number of customers</label>
+                    <input type="number" name="max-cust-per-hour" id="max-cust-per-hour" min="0" value="0" required>
+
+                    <label for="avg-cookies-per-sale">Average cookies per sale</label>
+                    <input type="number" name="avg-cookies-per-sale" id="avg-cookies-per-sale" min="0" value="0" step="0.1" required>
+
+                    <button type="submit">Add Store</button>
+                </fieldset>
+            </form>
         </article>
     </section>
     <script src="app.js"></script>
