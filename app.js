@@ -1,12 +1,5 @@
 'use strict';
 
-const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-const hourlyTotal = [];
-for (let i = 0; i < hours.length; i++) {
-    hourlyTotal.push(0);
-}
-let grandTotal = 0;
-
 function CookieStore (locationName, minCustPerHour, maxCustPerHour, avgCookiesPerSale) {
     this.locationName = locationName;
     this.minCustPerHour = minCustPerHour;
@@ -37,6 +30,12 @@ form.addEventListener('submit', function() {
     createFooter();
     document.querySelector('form').reset();
 });
+
+const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+const hourlyTotal = [];
+for (let i = 0; i < hours.length; i++) {
+    hourlyTotal.push(0);
+}
 
 CookieStore.prototype.predictCookies = function() {
     const hourlyPredictedCookies = [];
@@ -72,6 +71,8 @@ function createHeader() {
     tr.appendChild(storeTotalHeading);
     table.appendChild(header);
 }
+
+let grandTotal = 0;
 
 function addStoreRow(storeObject) {
     const tr = document.createElement('tr');
