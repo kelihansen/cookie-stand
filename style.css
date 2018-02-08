@@ -3,8 +3,13 @@
     margin: 0;
 }
 
+body {
+    font-size: 16px;
+}
+
 h2 {
     margin-bottom: 10px;
+    font-size: 1.5em;
 }
 
 #cookie-needs {
@@ -19,7 +24,7 @@ h2 {
 table {
     background-color: rgb(199, 104, 66);
     padding: 40px;
-    border-spacing: 4px;
+    border-spacing: 3px;
 }
 
 td {
@@ -49,4 +54,42 @@ th[scope="column"] {
 
 #grand-total {
     font-weight: bold;
+}
+
+form {
+    background-color: rgb(221, 221, 224);
+    margin: 30px auto;
+    padding: 40px;   
+    width: 300px;
+}
+
+fieldset {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+legend {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+input[type=number] {
+    width: 50px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    margin-bottom: 30px;
+    width: 200px;
+    height: 1.5em;
+    padding: 2px;    
+}
+
+button {
+    padding: 5px;
+    margin: 0 auto;
 }
