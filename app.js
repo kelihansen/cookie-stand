@@ -20,6 +20,24 @@ const powellsStore = new CookieStore('Powell\'s', 11, 38, 3.7);
 const stJohnsStore = new CookieStore('St. John\'s', 20, 38, 2.3);
 const waterfrontStore = new CookieStore('Waterfront', 2, 16, 4.6);
 
+const originalStores = [pdxAirportStore, pioneerSquareStore, powellsStore, stJohnsStore, waterfrontStore];
+
+const form = document.querySelector('form');
+
+form.addEventListener('submit', function() {
+    event.preventDefault();
+    const locationName = this.location.value;
+    const minCustPerHour = parseInt(this.min.value);
+    const maxCustPerHour = parseInt(this.max.value);
+    const avgCookiesPerSale = parseFloat(this.avg.value);
+    const newStore = new CookieStore(locationName, minCustPerHour, maxCustPerHour, avgCookiesPerSale);
+    addStoreRow(newStore);
+    const footer = document.querySelector('tfoot');
+    footer.remove();
+    createFooter();
+    document.querySelector('form').reset();
+});
+
 CookieStore.prototype.predictCookies = function() {
     const hourlyPredictedCookies = [];
     let totalPredictedCookies = 0;
@@ -99,11 +117,9 @@ function buildTable() {
     createHeader();
     const body = document.createElement('tbody');
     table.appendChild(body);
-    addStoreRow(pdxAirportStore);
-    addStoreRow(pioneerSquareStore);
-    addStoreRow(powellsStore);
-    addStoreRow(stJohnsStore);
-    addStoreRow(waterfrontStore);
+    for (let i = 0; i < originalStores.length; i++) {
+        addStoreRow(originalStores[i]);
+    }
     createFooter();
 }
 
