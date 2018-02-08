@@ -15,22 +15,6 @@ const waterfrontStore = new CookieStore('Waterfront', 2, 16, 4.6);
 
 const originalStores = [pdxAirportStore, pioneerSquareStore, powellsStore, stJohnsStore, waterfrontStore];
 
-const form = document.querySelector('form');
-
-form.addEventListener('submit', function() {
-    event.preventDefault();
-    const locationName = this.location.value;
-    const minCustPerHour = parseInt(this.min.value);
-    const maxCustPerHour = parseInt(this.max.value);
-    const avgCookiesPerSale = parseFloat(this.avg.value);
-    const newStore = new CookieStore(locationName, minCustPerHour, maxCustPerHour, avgCookiesPerSale);
-    addStoreRow(newStore);
-    const footer = document.querySelector('tfoot');
-    footer.remove();
-    createFooter();
-    document.querySelector('form').reset();
-});
-
 const hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 const hourlyTotal = [];
 for (let i = 0; i < hours.length; i++) {
@@ -125,3 +109,19 @@ function buildTable() {
 }
 
 buildTable();
+
+const form = document.querySelector('form');
+
+form.addEventListener('submit', function() {
+    event.preventDefault();
+    const locationName = this.location.value;
+    const minCustPerHour = parseInt(this.min.value);
+    const maxCustPerHour = parseInt(this.max.value);
+    const avgCookiesPerSale = parseFloat(this.avg.value);
+    const newStore = new CookieStore(locationName, minCustPerHour, maxCustPerHour, avgCookiesPerSale);
+    addStoreRow(newStore);
+    const footer = document.querySelector('tfoot');
+    footer.remove();
+    createFooter();
+    document.querySelector('form').reset();
+});
