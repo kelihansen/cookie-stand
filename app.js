@@ -123,5 +123,5 @@ form.addEventListener('submit', function() {
     const footer = document.querySelector('tfoot');
     footer.remove();
     createFooter();
-    document.querySelector('form').reset();
+    this.reset();
 });
