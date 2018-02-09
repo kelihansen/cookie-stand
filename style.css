@@ -24,7 +24,7 @@ h2 {
 }
 
 table {
-    background-color: rgb(199, 104, 66);
+    background-color: rgb(0, 120, 109);
     padding: 40px;
     border-spacing: 3px;
     font-family: 'Montserrat', sans-serif;
@@ -44,15 +44,18 @@ tr:nth-child(even) td {
 th[scope="row"] {
     text-align: right;
     padding: 7px;
-    background-color: transparent;
+    color: white;
+    font-family: 'Sanchez', serif;
 }
 
 th[scope="column"] {
     padding: 2px 7px;
+    color: white;
+    font-family: 'Sanchez', serif;
 }
 
 #data td:last-child, tfoot td {
-    background-color: rgb(233, 187, 135);
+    background-color: rgb(29, 180, 166);
 }
 
 #grand-total {
@@ -75,6 +78,7 @@ fieldset {
 legend {
     font-size: 1.5em;
     font-weight: bold;
+    font-family: 'Patua One', cursive;
 }
 
 input[type=number] {
@@ -89,10 +93,12 @@ input {
     margin-bottom: 30px;
     width: 200px;
     height: 1.5em;
-    padding: 2px;    
+    padding: 2px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 button {
     padding: 5px;
     margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
 }
