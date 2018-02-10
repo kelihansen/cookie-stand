@@ -125,3 +125,11 @@ form.addEventListener('submit', function() {
     createFooter();
     this.reset();
 });
+
+const cancelButton = document.getElementById('cancel-button');
+const modal = document.getElementById('form-screen');
+
+cancelButton.addEventListener('click', function() {
+    modal.classList.remove('modal');
+    form.reset();
+});
