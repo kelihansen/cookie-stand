@@ -1,7 +1,7 @@
 * {
     padding: 0;
     margin: 0;
-    border: solid 1px black;
+    /* border: solid 1px black; */
 }
 
 body {
@@ -14,6 +14,9 @@ header {
     z-index: 100;
     top: 0;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 header ul {
@@ -27,8 +30,21 @@ header ul {
     height: 3.75rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-top: 118px;
+    margin-top: 57px;
+}
+
+#left-nav {
+    flex: 1;
+    justify-content: flex-end;
+}
+
+#right-nav {
+    flex: 1;
+    justify-content: flex-start;    
+}
+
+#logo {
+    margin-top: 35px;
 }
 
 header li {
@@ -37,15 +53,15 @@ header li {
 }
 
 header a, header a:visited {
-    color: white;
+    color: rgb(232, 232, 232);
     text-decoration: none;
 }
 
 header a:hover {
-    color: rgb(27, 165, 152);
+    color: white;
 }
 
-#faq {
+#faq, #locations {
     position: relative;
     top: -205px;
     visibility: hidden;
@@ -112,6 +128,21 @@ header a:hover {
     left: 177px;
 }
 
+#locations-background {
+    background-color: rgb(196, 74, 32);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#locations-background h3 {
+    font-size: 2.25rem;
+    font-family: 'Patua One', serif;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+}
+
 h2 {
     font-family: 'Patua One', serif;
     margin-bottom: 10px;
@@ -142,7 +173,7 @@ td {
 }
 
 tr:nth-child(even) td {
-    background-color: rgb(221, 221, 224);
+    background-color: rgb(232, 232, 232);
 }
 
 th[scope="row"] {
@@ -180,7 +211,7 @@ th[scope="column"] {
 }
 
 form {
-    background-color: rgb(221, 221, 224);
+    background-color: rgb(232, 232, 232);
     padding: 40px;   
     width: 300px;
     position: absolute;
