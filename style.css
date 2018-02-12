@@ -10,7 +10,7 @@ body {
     font-family: 'Sanchez', serif;
 }
 
-header {
+#index-header {
     z-index: 100;
     position: -webkit-sticky;
     position: sticky;
@@ -43,7 +43,7 @@ header {
     justify-content: center;
 }
 
-header ul {
+#index-header ul {
     list-style: none;
     border-top: solid 27px white;
     border-bottom: solid 27px white;
@@ -74,17 +74,17 @@ header ul {
     margin-top: 35px;
 }
 
-header li {
+#index-header li {
     text-transform: uppercase;
     margin: 0 22px;
 }
 
-header a, header a:visited {
+#index-header a, #index-header a:visited {
     color: rgb(232, 232, 232);
     text-decoration: none;
 }
 
-header a:hover {
+#index-header a:hover {
     color: white;
 }
 
@@ -264,17 +264,17 @@ hr {
     width: 900px;
 }
 
-.cross {
+#about .cross {
     position: relative;
 }
 
-.cross div:first-child {
+#about .cross div:first-child {
     width: 78px;
     height: 8px;
     background-color: rgb(120, 38, 10);    
 }
 
-.cross div:nth-child(2) {
+#about .cross div:nth-child(2) {
     position: absolute;
     top: -35px;
     left: 35px;
@@ -316,7 +316,7 @@ hr {
     padding-bottom: 100px;
 }
 
-#first-cookie img.closed, #better-cookies img.closed {
+#first-cookie img.closed, #better-cookies img.closed, .close-x.gone {
     display: none;
 }
 
@@ -328,7 +328,7 @@ hr {
     position: relative;
 }
 
-.close-x {
+.close-x.here {
     position: absolute;
     top: 9px;
     right: 9px;
@@ -390,10 +390,32 @@ footer a {
     color: white;
 }
 
-h2 {
+#sales-header {
+    width: 100%;
+    background-color: rgb(96, 96, 96);
+    position: static;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#sales-header img {
+    width: 132px;
+}
+
+#sales-header h1 {
+    font-size: 2.25rem;
+    font-family: 'Patua One', serif;
+    letter-spacing: .1rem;
+    color: white;
+    padding: 94px 0 0 17px;      
+}
+
+#data h2 {
     font-family: 'Patua One', serif;
     margin-bottom: 10px;
     font-size: 1.5em;
+    letter-spacing: .02rem;
+    color: rgb(96, 96, 96);
 }
 
 #cookie-needs {
@@ -458,7 +480,11 @@ th[scope="column"] {
     background-color: rgba(96, 96, 96, .97);
 }
 
-#form-screen {
+#form-screen.open {
+    display: relative;
+}
+
+#form-screen.closed {
     display: none;
 }
 
@@ -520,4 +546,28 @@ button[type="button"] {
 
 button[type="submit"] {
     background-color: rgb(0, 110, 100);
+}
+
+#data .cross {
+    position: relative;
+    top: 40px;
+    left: 970px;
+    height: 50px;
+    width: 50px;
+    background-color: white;
+}
+
+#data .cross div:first-child {
+    width: 50px;
+    height: 6px;
+    background-color: rgb(96, 96, 96);    
+}
+
+#data .cross div:nth-child(2) {
+    position: absolute;
+    top: -22px;
+    left: 22px;
+    width: 6px;
+    height: 50px;
+    background-color: rgb(96, 96, 96);    
 }
