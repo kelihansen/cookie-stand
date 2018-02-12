@@ -156,6 +156,12 @@ header a:hover {
     left: 177px;
 }
 
+#locations {
+    position: relative;
+    top: -98px;
+    visibility: hidden;
+}
+
 #locations-section {
     background-color: rgb(196, 74, 32);
     display: flex;
@@ -169,16 +175,60 @@ header a:hover {
     text-transform: uppercase;
     letter-spacing: .1rem;
     color: white;    
-    margin: 154px auto 0 auto;
+    margin: 196px auto 0 auto;
 }
 
 #locations-section p {
     color: white;    
-    margin: 0 auto;
+    margin: 0 auto 27px auto;
     font-size: 1.125rem;
     font-family: 'Sanchez', serif;
     line-height: 1.6rem;
     letter-spacing: .02rem;
+}
+
+#locations-frame {
+    box-sizing: border-box;
+    background-color: white;
+    width: 900px;
+    padding: 60px 80px;
+    margin-top: 50px;
+}
+
+#locations-frame ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+#locations-frame li {
+    color: rgb(96, 96, 96);
+}
+
+#locations-frame h4 {
+    color: rgb(96, 96, 96);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+}
+
+#locations-frame p {
+    color: rgb(96, 96, 96);
+    text-align: center;
+}
+
+hr {
+    width: 500px;
+    margin: 3em auto;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid rgb(196, 74, 32);
+}
+
+#shop {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 27px;
+    background-color: rgb(27, 165, 152);
 }
 
 h2 {
