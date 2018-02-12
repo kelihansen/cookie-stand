@@ -112,6 +112,8 @@ buildTable();
 
 const form = document.querySelector('form');
 
+const modal = document.getElementById('form-screen');
+
 form.addEventListener('submit', function() {
     event.preventDefault();
     const locationName = this.location.value;
@@ -123,5 +125,24 @@ form.addEventListener('submit', function() {
     const footer = document.querySelector('tfoot');
     footer.remove();
     createFooter();
+    modal.classList.remove('modal');
+    modal.classList.remove('open');
+    modal.classList.add('closed');
     this.reset();
+});
+
+const cancelButton = document.getElementById('cancel-button');
+const addButton = document.querySelector('.cross');
+
+addButton.addEventListener('click', function() {
+    modal.classList.remove('closed');
+    modal.classList.add('open');
+    modal.classList.add('modal');
+});
+
+cancelButton.addEventListener('click', function() {
+    modal.classList.remove('modal');
+    modal.classList.remove('open');
+    modal.classList.add('closed');
+    form.reset();
 });
