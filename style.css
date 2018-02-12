@@ -300,15 +300,38 @@ hr {
     color: white;
 }
 
-.story p{
+.story p {
     width: 550px;
     margin: 35px auto;
     color: rgb(96, 96, 96);
     line-height: 1.4em;  
 }
 
+.story a {
+    color: rgb(196, 74, 32);
+    text-decoration: none;
+}
+
 .story {
     padding-bottom: 100px;
+}
+
+#first-cookie img.closed, #better-cookies img.closed {
+    display: none;
+}
+
+#first-cookie img.open, #better-cookies img.open {
+    border: solid 30px white;
+}
+
+#first-cookie div:first-child, #better-cookies div:first-child {
+    position: relative;
+}
+
+.close-x {
+    position: absolute;
+    top: 9px;
+    right: 9px;
 }
 
 #shop {
@@ -427,11 +450,16 @@ th[scope="column"] {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, .9);
+    background-color: rgba(96, 96, 96, .97);
+}
+
+#form-screen {
+    display: none;
 }
 
 form {
