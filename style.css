@@ -88,7 +88,7 @@ header a:hover {
     color: white;
 }
 
-#faq, #locations {
+#faq-locator, #shop-locator {
     position: relative;
     top: -205px;
     visibility: hidden;
@@ -156,7 +156,7 @@ header a:hover {
     left: 177px;
 }
 
-#locations {
+#locations-locator {
     position: relative;
     top: -98px;
     visibility: hidden;
@@ -164,9 +164,11 @@ header a:hover {
 
 #locations-section {
     background-color: rgb(196, 74, 32);
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 100px;
 }
 
 #locations-section h3 {
@@ -178,9 +180,9 @@ header a:hover {
     margin: 196px auto 0 auto;
 }
 
-#locations-section p {
+#locations-section h3+p {
     color: white;    
-    margin: 0 auto 27px auto;
+    margin: 0 auto;
     font-size: 1.125rem;
     font-family: 'Sanchez', serif;
     line-height: 1.6rem;
@@ -203,32 +205,110 @@ header a:hover {
 
 #locations-frame li {
     color: rgb(96, 96, 96);
+    line-height: 1.4rem;
 }
 
 #locations-frame h4 {
     color: rgb(96, 96, 96);
     text-transform: uppercase;
     margin-bottom: 2.5rem;
+    font-size: 1.125rem;    
 }
 
 #locations-frame p {
     color: rgb(96, 96, 96);
     text-align: center;
+    line-height: 1.4rem;
 }
 
 hr {
-    width: 500px;
+    width: 550px;
     margin: 3em auto;
     height: 1px;
     border: 0;
     border-top: 2px solid rgb(196, 74, 32);
 }
 
-#shop {
+#about {
+    padding-top: 54px;
+}
+
+#about-locator {
+    position: relative;
+    top: -303px;
+    visibility: hidden;
+}
+
+#about-heading {
+    background-color: rgb(120, 38, 10);
+    width: 900px;
+    margin: 0 auto 27px auto;
+    padding: 30px 0;
+    box-sizing: border-box;
+}
+
+#about h3 {
+    font-size: 2.25rem;
+    font-family: 'Patua One', serif;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    color: white;
+    text-align: center;    
+}
+
+#about-image-wrapper {
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 900px;
+}
+
+.cross {
+    position: relative;
+}
+
+.cross div:first-child {
+    width: 78px;
+    height: 8px;
+    background-color: rgb(120, 38, 10);    
+}
+
+.cross div:nth-child(2) {
+    position: absolute;
+    top: -35px;
+    left: 35px;
+    width: 8px;
+    height: 78px;
+    background-color: rgb(120, 38, 10);    
+}
+
+#shop {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 27px;
     background-color: rgb(27, 165, 152);
+}
+
+#shop h3 {
+    font-size: 2.25rem;
+    font-family: 'Patua One', serif;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    color: white;
+}
+
+.story p{
+    width: 550px;
+    margin: 35px auto;
+    color: rgb(96, 96, 96);
+    line-height: 1.4em;  
+}
+
+.story {
+    padding-bottom: 100px;
 }
 
 h2 {
